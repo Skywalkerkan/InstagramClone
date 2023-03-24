@@ -103,6 +103,10 @@ class KayitOlController: UIViewController {
         return button
         
     }()
+    var image: UIImage = {
+        let image = UIImage()
+        return image
+    }()
     
     @objc func btnkayitOlPressed(){
        // print("Kayita basildi")
@@ -131,7 +135,10 @@ class KayitOlController: UIViewController {
             
             let goruntuAdi = UUID().uuidString //rastgele bir string değer verecek
             let ref = Storage.storage().reference(withPath: "/ProfilFotograflari/\(goruntuAdi)")
-            let goruntuData = self.btnFotograf.imageView?.image?.jpegData(compressionQuality: 0.6) ?? Data()
+          //  let goruntuData = self.btnFotograf.imageView?.image?.jpegData(compressionQuality: 0.6) ?? Data()
+            let goruntuData = self.image.jpegData(compressionQuality: 0.6) ?? Data()
+            print(self.btnFotograf.imageView?.image)
+            print("-------", goruntuData)
             ref.putData(goruntuData, metadata: nil) { _, error in
                 if let error = error{
                     print("foto kaydedilemedi", error)
@@ -159,6 +166,17 @@ class KayitOlController: UIViewController {
                         print("Başarı brom")
                         hud.dismiss(animated: true)
                         self.gorunumuDuzelt()
+                        let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive})
+                            .map({$0 as? UIWindowScene})
+                            .compactMap({$0})
+                            .first?.windows
+                            .filter({$0.isKeyWindow}).first
+                        
+                        guard let anaTabBarController = keyWindow?.rootViewController as? AnaTabBarController else{return}
+                        anaTabBarController.gorunumuOlustur() // KullaniciProfilContorllera gideriz
+                        self.dismiss(animated: true) // oturum açma ekranı kapanacak
+                        
+                        
                     }
                 }
             }
@@ -309,11 +327,19 @@ extension KayitOlController: UIImagePickerControllerDelegate, UINavigationContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imgChosen = info[.originalImage] as? UIImage
                                                         //her zaman original
+        print(imgChosen)
+        image = imgChosen ?? UIImage()
+        print(image)
+        //btnFotograf.setImage(imgChosen?.withRenderingMode(.alwaysOriginal), for: .normal)
         self.btnFotograf.setImage(imgChosen?.withRenderingMode(.alwaysOriginal), for: .normal)
+       // self.btnFotograf.imageView?.image =
         btnFotograf.layer.cornerRadius = btnFotograf.frame.width / 2
         btnFotograf.layer.masksToBounds = true // sınırları kırp gösterme
         btnFotograf.layer.borderWidth = 5
         btnFotograf.layer.borderColor = UIColor.darkGray.cgColor
+        print(self.btnFotograf.imageView?.image as Any)
+        print("aaaaa")
+        
         dismiss(animated: true)
     }
 }
