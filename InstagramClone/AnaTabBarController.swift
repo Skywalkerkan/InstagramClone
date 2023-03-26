@@ -41,7 +41,7 @@ class AnaTabBarController: UITabBarController{
                                                     rootViewController: AnaController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let araNavController = navControllerOlustur(seciliOlmayanIkon: UIImage(imageLiteralResourceName: "Ara_Secili_Degil"),
-                                                    seciliIkon: UIImage(imageLiteralResourceName: "Ara_Secili"), rootViewController: KullaniciAraController(collectionViewLayout: UICollectionViewLayout()))
+                                                    seciliIkon: UIImage(imageLiteralResourceName: "Ara_Secili"), rootViewController: KullaniciAraController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let ekleNavController = navControllerOlustur(seciliOlmayanIkon: UIImage(imageLiteralResourceName: "Ekle_Secili_Degil"),
                                                      seciliIkon: UIImage(imageLiteralResourceName: "Ekle_Secili_Degil"))
