@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Profil_Secili.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Profil_Secili.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

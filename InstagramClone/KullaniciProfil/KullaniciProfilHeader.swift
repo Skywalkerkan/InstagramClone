@@ -17,24 +17,133 @@ class KullaniciProfilHeader: UICollectionViewCell{
     var gecerliKullanici: Kullanici?{
         didSet{
            // print("Header alanındaki geçerli kullanıcı nesnesine bir değer atandı: ", gecerliKullanici?.kullaniciAdi ?? "")
+            takipButonuAyarla()
             guard let url = URL(string: gecerliKullanici?.profilGoruntuUrl ?? "") else{return}
+            print(url)
             imgProfil.sd_setImage(with: url, completed: nil)
             lblKullaniciAdi.text = gecerliKullanici?.kullaniciAdi
+            //print(imgProfil.image)
             
         }
     }
     
-    let btnDuzenle: UIButton = {
+    
+    
+    fileprivate func takipButonuAyarla(){
+        
+        guard let oturumKullaniciID = Auth.auth().currentUser?.uid else{return}
+        guard let gecerliKullaniciID = gecerliKullanici?.kullaniciID else{return}
+        
+        if oturumKullaniciID != gecerliKullaniciID{
+            
+            Firestore.firestore().collection("TakipEdiyor").document(oturumKullaniciID).getDocument { snapshot, error in
+                if let error = error{
+                    print("Takip verisi alınamadı", error)
+                    return
+                }
+                guard let takipVerileri = snapshot?.data() else{return}
+                print("AAAAAAAAA \(takipVerileri.count)")
+               // self.lblTakipçi.text = String(takipVerileri.count)
+                if let veri = takipVerileri[gecerliKullaniciID]{
+                    let takip = veri as! Int
+                    print(takip)
+                    if takip == 1{
+                        self.btnDuzenle.setTitle("Takipten Çıkar", for: .normal)
+                        self.btnDuzenle.setTitleColor(.black, for: .normal)
+            
+                    }
+                    
+                }else{
+                    self.btnDuzenle.setTitle("Takip Et", for: .normal)
+                    self.btnDuzenle.backgroundColor = UIColor.rgbConvert(red: 20, green: 155, blue: 240)
+                    self.btnDuzenle.setTitleColor(.white, for: .normal)
+                    self.btnDuzenle.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+                    self.btnDuzenle.layer.borderWidth = 1
+                }
+                
+                
+                
+            }
+
+        }else{
+            self.btnDuzenle.setTitle("Profil Düzenle", for: .normal)
+        }
+    }
+    
+    lazy var btnDuzenle: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Profil Düzenle", for: .normal)
+       // button.setTitle("Profil Düzenle", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(btnProfil_TakipDüzenle), for: .touchUpInside)
         return button
     }()
+    
+    @objc fileprivate func btnProfil_TakipDüzenle(){
+        guard let oturumuAcanKullaniciID = Auth.auth().currentUser?.uid else{return}
+        guard let gecerliKullaniciID = gecerliKullanici?.kullaniciID else{return}
+        
+        if btnDuzenle.titleLabel?.text == "Takipten Çıkar"{                             //Dökümandaki geçerli yeri sildik
+            Firestore.firestore().collection("TakipEdiyor").document(oturumuAcanKullaniciID).updateData([gecerliKullaniciID : FieldValue.delete()]) { error in
+                if let error = error{
+                    print("Takipten çıkarırken hata meydana geldi", error.localizedDescription)
+                    return
+                }
+                print("\(self.gecerliKullanici?.kullaniciAdi ?? "") adlı kullanıcı takipten çıkarıldı")
+                self.btnDuzenle.backgroundColor = .rgbConvert(red: 20, green: 155, blue: 240)
+                self.btnDuzenle.setTitleColor(.white, for: .normal)
+                self.btnDuzenle.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+                self.btnDuzenle.setTitle("Takip Et", for: .normal)
+                
+            }
+            return  // alttaki kod satırları çalışmasın diye returnledik
+        }
+        
+        
+        let eklenecekDeger = [gecerliKullaniciID: 1]
+        
+        Firestore.firestore().collection("TakipEdiyor").document(oturumuAcanKullaniciID).getDocument { snapshot, error in
+            if let error = error{
+                print("Takip verisi alıbanadu", error.localizedDescription)
+                return
+            }
+            if snapshot?.exists == true{
+                Firestore.firestore().collection("TakipEdiyor").document(oturumuAcanKullaniciID).updateData(eklenecekDeger) { error in
+                    if let error = error{
+                        print("Takip verisi güncellemesi başarısız", error.localizedDescription)        //UPDATE VERİSİ SADECE DOSYA VARSA ÇALIŞIR AKSİ TAKTİRDE ÇALIŞMAYACAKTIR
+                        return
+                    }
+                    print("Takip işlemi başarılı")
+                    self.btnDuzenle.setTitle("Takipten Çıkar", for: .normal)
+                    self.btnDuzenle.setTitleColor(.black, for: .normal)
+                    self.btnDuzenle.backgroundColor = .white
+                    self.btnDuzenle.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                    self.btnDuzenle.layer.borderColor = UIColor.lightGray.cgColor
+                    self.btnDuzenle.layer.borderWidth = 1
+                    self.btnDuzenle.layer.cornerRadius = 5
+                }
+            } else{                                                                         // OYÜZDEN SET DATAYI AYATLADIK
+                Firestore.firestore().collection("TakipEdiyor").document(oturumuAcanKullaniciID).setData(eklenecekDeger) { error in
+                    if let error = error{
+                        print("Takip işlemi başarısız", error.localizedDescription)
+                        return
+                    }
+                    print("Takip işlemi başarılı")
+                }
+            }
+            
+        }
+        
+        
+        
+        
+
+        
+    }
     
     let lblPaylasim: UILabel = {
        let label = UILabel()
