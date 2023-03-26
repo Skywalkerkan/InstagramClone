@@ -20,16 +20,38 @@ class AnaController: UICollectionViewController{
         collectionView.register(AnaPaylasimCell.self, forCellWithReuseIdentifier: hucreID)
         butonlariOlustur()
         kullaniciyiGetir() // kullaniciyi getirin içinde paylaşımlari getir var
+        //kullaniciyiGetir(kullaniciID: "GI8WlsVTQZcMykphHa0ZyaIAtjj1") // başka bir kullanıcının
+       /* Firestore.kullaniciOlustur(kullaniciID: "GI8WlsVTQZcMykphHa0ZyaIAtjj1"){ kullanici in
+            self.paylasimlariGetir(kullanici: kullanici)
+        }*/
+        takipEdilenKIDDegerleriGetir()
+    }
+    
+    
+    fileprivate func takipEdilenKIDDegerleriGetir(){
+        guard let kID = Auth.auth().currentUser?.uid else{return}
         
+        Firestore.firestore().collection("TakipEdiyor").document(kID).addSnapshotListener { documentSnapshot, error in
+            if let error = error{
+                print("paylaşımlar getirlirkenHata meydana geldi", error.localizedDescription)
+                return
+            }
+            guard let paylasimSozlukVerisi = documentSnapshot?.data() else{return}
+            paylasimSozlukVerisi.forEach { key, value in
+                Firestore.kullaniciOlustur(kullaniciID: key) { kullanici in
+                    self.paylasimlariGetir(kullanici: kullanici)   // her bir kullanıcıya ait takip ettiği IDleri alıp
+                }                                                  // O ID lere göre paylaşımları getiriyoruz
+            }
+        }
     }
     
     var paylasimlar = [Paylasim]()
     
-    fileprivate func paylasimlariGetir(){
-        paylasimlar.removeAll()
-        guard let gecerliKullaniciID = Auth.auth().currentUser?.uid else{return}
-        guard let gecerliKullanici = gecerliKullanici else {return}
-        Firestore.firestore().collection("Paylasimlar").document(gecerliKullaniciID)
+    fileprivate func paylasimlariGetir(kullanici: Kullanici){
+       // paylasimlar.removeAll()  birden fazla kullanıcıdan geleceği için sıkıntı olacaktır
+       // guard let gecerliKullaniciID = Auth.auth().currentUser?.uid else{return}
+       // guard let gecerliKullanici = gecerliKullanici else {return}
+        Firestore.firestore().collection("Paylasimlar").document(kullanici.kullaniciID)
             .collection("Fotograf_Paylasimlari").order(by: "PaylasimTarihi", descending: false)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error{
@@ -38,11 +60,14 @@ class AnaController: UICollectionViewController{
                 querySnapshot?.documentChanges.forEach({ degisiklik in
                     if degisiklik.type == .added{
                         let paylasimVerisi = degisiklik.document.data()
-                        let paylasim = Paylasim(kullanici: gecerliKullanici, sozlukVerisi: paylasimVerisi)
+                        let paylasim = Paylasim(kullanici: kullanici, sozlukVerisi: paylasimVerisi)
                         self.paylasimlar.append(paylasim)
                     }
                 })
                 self.paylasimlar.reverse()
+                self.paylasimlar.sort { p1, p2 -> Bool in
+                    return p1.paylasimTarihi.dateValue().compare(p2.paylasimTarihi.dateValue()) == .orderedDescending
+                }
                 self.collectionView.reloadData()
             }
     }
@@ -64,16 +89,18 @@ class AnaController: UICollectionViewController{
     
     var gecerliKullanici: Kullanici?
     
-    fileprivate func kullaniciyiGetir(){
+    fileprivate func kullaniciyiGetir(kullaniciID: String = ""){
         guard let gecerliKullaniciID = Auth.auth().currentUser?.uid else{return}
-        Firestore.firestore().collection("Kullanicilar").document(gecerliKullaniciID).getDocument { snapshot, error in
+        let kID = kullaniciID == "" ? gecerliKullaniciID : kullaniciID  // kullaniciID  boş bir değere eşitse gecerliKID kıde aktarılacak
+        Firestore.firestore().collection("Kullanicilar").document(kID).getDocument { snapshot, error in
             if let error = error{
                 print("kullanici bilgileri getirilemedi \(error)")
                 return
             }
             guard let kullaniciVerisi = snapshot?.data() else {return}
             self.gecerliKullanici = Kullanici(kullaniciVerisi: kullaniciVerisi)
-            self.paylasimlariGetir()
+            guard let kullanici = self.gecerliKullanici else{return}
+            self.paylasimlariGetir(kullanici: kullanici)
         }
     }
     

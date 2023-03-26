@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8B885D9F69E77B95410732C2 /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137FDFAE9A7F8639D147AC96 /* Pods_InstagramClone.framework */; };
+		DE0A185E29D06B3200A876FE /* Uzanti+Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A185D29D06B3200A876FE /* Uzanti+Firestore.swift */; };
+		DE0A186029D0736C00A876FE /* Uzanti+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A185F29D0736C00A876FE /* Uzanti+Date.swift */; };
 		DE21BE3729B4E8DA006CC365 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21BE3629B4E8DA006CC365 /* ExtensionUIColor.swift */; };
 		DE21BE3929B4EE0F006CC365 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE21BE3829B4EE0F006CC365 /* GoogleService-Info.plist */; };
 		DE7326C929C739E100F517A5 /* Kullanici.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7326C829C739E100F517A5 /* Kullanici.swift */; };
@@ -21,12 +23,24 @@
 		DE9D3D1529B35BA400792A64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9D3D1329B35BA400792A64 /* Main.storyboard */; };
 		DE9D3D1729B35BA500792A64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9D3D1629B35BA500792A64 /* Assets.xcassets */; };
 		DE9D3D1A29B35BA500792A64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9D3D1829B35BA500792A64 /* LaunchScreen.storyboard */; };
+		DE9DB6CA29CC539800F3986A /* FotografSeciciController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6C929CC539800F3986A /* FotografSeciciController.swift */; };
+		DE9DB6CC29CC628400F3986A /* FotografSeciciCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6CB29CC628400F3986A /* FotografSeciciCell.swift */; };
+		DE9DB6CE29CC67C100F3986A /* FotografSeciciHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6CD29CC67C100F3986A /* FotografSeciciHeader.swift */; };
+		DE9DB6D029CC86AB00F3986A /* FotografPaylasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6CF29CC86AB00F3986A /* FotografPaylasController.swift */; };
+		DE9DB6D229CCE03600F3986A /* Paylasim.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6D129CCE03600F3986A /* Paylasim.swift */; };
+		DE9DB6D429CCE34C00F3986A /* KullaniciPaylasimFotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6D329CCE34C00F3986A /* KullaniciPaylasimFotoCell.swift */; };
+		DE9DB6D729CCF12000F3986A /* AnaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6D629CCF12000F3986A /* AnaController.swift */; };
+		DE9DB6D929CCF1F100F3986A /* AnaPaylasimCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9DB6D829CCF1F100F3986A /* AnaPaylasimCell.swift */; };
+		DEA0B7DC29CEFC4200E63068 /* KullaniciAraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA0B7DB29CEFC4200E63068 /* KullaniciAraCell.swift */; };
+		DEBAB09329CE36580064C3D1 /* KullaniciAraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAB09229CE36580064C3D1 /* KullaniciAraController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02E5D6B37ACD4BD904F99836 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 		137FDFAE9A7F8639D147AC96 /* Pods_InstagramClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53AE5AE2CABF9D51377F97E8 /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
+		DE0A185D29D06B3200A876FE /* Uzanti+Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Uzanti+Firestore.swift"; sourceTree = "<group>"; };
+		DE0A185F29D0736C00A876FE /* Uzanti+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Uzanti+Date.swift"; sourceTree = "<group>"; };
 		DE21BE3629B4E8DA006CC365 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
 		DE21BE3829B4EE0F006CC365 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE7326C829C739E100F517A5 /* Kullanici.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kullanici.swift; sourceTree = "<group>"; };
@@ -42,6 +56,16 @@
 		DE9D3D1629B35BA500792A64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9D3D1929B35BA500792A64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9D3D1B29B35BA500792A64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE9DB6C929CC539800F3986A /* FotografSeciciController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotografSeciciController.swift; sourceTree = "<group>"; };
+		DE9DB6CB29CC628400F3986A /* FotografSeciciCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotografSeciciCell.swift; sourceTree = "<group>"; };
+		DE9DB6CD29CC67C100F3986A /* FotografSeciciHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotografSeciciHeader.swift; sourceTree = "<group>"; };
+		DE9DB6CF29CC86AB00F3986A /* FotografPaylasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotografPaylasController.swift; sourceTree = "<group>"; };
+		DE9DB6D129CCE03600F3986A /* Paylasim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paylasim.swift; sourceTree = "<group>"; };
+		DE9DB6D329CCE34C00F3986A /* KullaniciPaylasimFotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KullaniciPaylasimFotoCell.swift; sourceTree = "<group>"; };
+		DE9DB6D629CCF12000F3986A /* AnaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaController.swift; sourceTree = "<group>"; };
+		DE9DB6D829CCF1F100F3986A /* AnaPaylasimCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaPaylasimCell.swift; sourceTree = "<group>"; };
+		DEA0B7DB29CEFC4200E63068 /* KullaniciAraCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KullaniciAraCell.swift; sourceTree = "<group>"; };
+		DEBAB09229CE36580064C3D1 /* KullaniciAraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KullaniciAraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				DE21BE3629B4E8DA006CC365 /* ExtensionUIColor.swift */,
+				DE0A185D29D06B3200A876FE /* Uzanti+Firestore.swift */,
+				DE0A185F29D0736C00A876FE /* Uzanti+Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -85,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7326C829C739E100F517A5 /* Kullanici.swift */,
+				DE9DB6D129CCE03600F3986A /* Paylasim.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +129,7 @@
 			children = (
 				DE90E8D929B5EE55008604F9 /* KullaniciProfilController.swift */,
 				DE90E8DC29B5F6A4008604F9 /* KullaniciProfilHeader.swift */,
+				DE9DB6D329CCE34C00F3986A /* KullaniciPaylasimFotoCell.swift */,
 			);
 			path = KullaniciProfil;
 			sourceTree = "<group>";
@@ -127,6 +155,9 @@
 		DE9D3D0C29B35BA400792A64 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				DEBAB09129CE36340064C3D1 /* AraView */,
+				DE9DB6D529CCF10200F3986A /* AnaView */,
+				DE9DB6C829CC538400F3986A /* FotografEkle */,
 				DE73E4D329C8CCE9004DCEAF /* OturumAc */,
 				DE7326C729C739D300F517A5 /* Model */,
 				DE90E8DB29B5F687008604F9 /* KullaniciProfil */,
@@ -142,6 +173,35 @@
 				DE21BE3829B4EE0F006CC365 /* GoogleService-Info.plist */,
 			);
 			path = InstagramClone;
+			sourceTree = "<group>";
+		};
+		DE9DB6C829CC538400F3986A /* FotografEkle */ = {
+			isa = PBXGroup;
+			children = (
+				DE9DB6C929CC539800F3986A /* FotografSeciciController.swift */,
+				DE9DB6CB29CC628400F3986A /* FotografSeciciCell.swift */,
+				DE9DB6CD29CC67C100F3986A /* FotografSeciciHeader.swift */,
+				DE9DB6CF29CC86AB00F3986A /* FotografPaylasController.swift */,
+			);
+			path = FotografEkle;
+			sourceTree = "<group>";
+		};
+		DE9DB6D529CCF10200F3986A /* AnaView */ = {
+			isa = PBXGroup;
+			children = (
+				DE9DB6D629CCF12000F3986A /* AnaController.swift */,
+				DE9DB6D829CCF1F100F3986A /* AnaPaylasimCell.swift */,
+			);
+			path = AnaView;
+			sourceTree = "<group>";
+		};
+		DEBAB09129CE36340064C3D1 /* AraView */ = {
+			isa = PBXGroup;
+			children = (
+				DEBAB09229CE36580064C3D1 /* KullaniciAraController.swift */,
+				DEA0B7DB29CEFC4200E63068 /* KullaniciAraCell.swift */,
+			);
+			path = AraView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,15 +320,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9DB6CC29CC628400F3986A /* FotografSeciciCell.swift in Sources */,
 				DE9D3D1229B35BA400792A64 /* KayitOlController.swift in Sources */,
+				DE9DB6D729CCF12000F3986A /* AnaController.swift in Sources */,
+				DE9DB6CA29CC539800F3986A /* FotografSeciciController.swift in Sources */,
 				DE90E8DD29B5F6A4008604F9 /* KullaniciProfilHeader.swift in Sources */,
 				DE90E8D829B5ED79008604F9 /* AnaTabBarController.swift in Sources */,
 				DE90E8DA29B5EE55008604F9 /* KullaniciProfilController.swift in Sources */,
 				DE73E4D529C8CCFE004DCEAF /* OturumAcContorller.swift in Sources */,
 				DE9D3D0E29B35BA400792A64 /* AppDelegate.swift in Sources */,
+				DEA0B7DC29CEFC4200E63068 /* KullaniciAraCell.swift in Sources */,
+				DE0A185E29D06B3200A876FE /* Uzanti+Firestore.swift in Sources */,
+				DEBAB09329CE36580064C3D1 /* KullaniciAraController.swift in Sources */,
 				DE9D3D1029B35BA400792A64 /* SceneDelegate.swift in Sources */,
 				DE7326C929C739E100F517A5 /* Kullanici.swift in Sources */,
+				DE0A186029D0736C00A876FE /* Uzanti+Date.swift in Sources */,
+				DE9DB6D029CC86AB00F3986A /* FotografPaylasController.swift in Sources */,
+				DE9DB6D429CCE34C00F3986A /* KullaniciPaylasimFotoCell.swift in Sources */,
+				DE9DB6D229CCE03600F3986A /* Paylasim.swift in Sources */,
+				DE9DB6CE29CC67C100F3986A /* FotografSeciciHeader.swift in Sources */,
 				DE21BE3729B4E8DA006CC365 /* ExtensionUIColor.swift in Sources */,
+				DE9DB6D929CCF1F100F3986A /* AnaPaylasimCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

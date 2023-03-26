@@ -30,7 +30,8 @@ class AnaPaylasimCell: UICollectionViewCell{
         let attrText = NSMutableAttributedString(string: paylasim.kullanici.kullaniciAdi, attributes: [.font : UIFont.boldSystemFont(ofSize: 14)])
         attrText.append(NSAttributedString(string: " \(paylasim.mesaj ?? "Veri Yok")", attributes: [.font : UIFont.systemFont(ofSize: 14)]))
         attrText.append(NSAttributedString(string: "\n\n", attributes: [.font: UIFont.systemFont(ofSize: 4)]))
-        attrText.append(NSAttributedString(string: "1 hafta önce", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.gray]))
+        let paylasimZaman = paylasim.paylasimTarihi.dateValue()
+        attrText.append(NSAttributedString(string: paylasimZaman.zamanOnceHesap(), attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.gray]))
         lblPaylasimMesaj.attributedText = attrText
     }
     
