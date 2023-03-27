@@ -24,7 +24,7 @@ class AnaController: UICollectionViewController{
         butonlariOlustur()
         kullaniciyiGetir() // kullaniciyi getirin içinde paylaşımlari getir var
         //kullaniciyiGetir(kullaniciID: "GI8WlsVTQZcMykphHa0ZyaIAtjj1") // başka bir kullanıcının
-       /* Firestore.kullaniciOlustur(kullaniciID: "GI8WlsVTQZcMykphHa0ZyaIAtjj1"){ kullanici in
+       /* Firestore.kullaniciOlustur(kullaniciID: "GI8WlsVTQZcMykphHa0ZyaIAtjj1"){ kullanici indsads
             self.paylasimlariGetir(kullanici: kullanici)
         }*/
         takipEdilenKIDDegerleriGetir()
