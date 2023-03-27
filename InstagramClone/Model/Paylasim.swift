@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 
 struct Paylasim{
+    var id: String?
     let kullanici: Kullanici
     let paylasimGoruntuUrl: String?
     let goruntuGenislik : Double?

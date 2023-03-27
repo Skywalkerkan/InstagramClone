@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol AnaPaylasimCellDelegate{
+    func yorumaBasildi(paylasim: Paylasim)  // hangi paylaşım yorumuna basıldı
+}
+
+
 class AnaPaylasimCell: UICollectionViewCell{
     
+    var delegate: AnaPaylasimCellDelegate?
     var paylasim: Paylasim?{
         didSet{
             guard let url = paylasim?.paylasimGoruntuUrl, let goruntuUrl = URL(string: url) else{return}
@@ -62,12 +68,19 @@ class AnaPaylasimCell: UICollectionViewCell{
         return button
     }()
     
-    let btnYorum: UIButton = {
+    lazy var btnYorum: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(imageLiteralResourceName: "Yorum").withRenderingMode(.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(btnYorumYapPressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc fileprivate func btnYorumYapPressed(){
+        print("Yorumlar listelenecek")
+        guard let paylasim = self.paylasim else{return}
+        delegate?.yorumaBasildi(paylasim: paylasim)
+    }
     
     let btnGonder: UIButton = {
         let button = UIButton(type: .system)

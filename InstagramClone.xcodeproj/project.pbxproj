@@ -12,6 +12,10 @@
 		DE0A186029D0736C00A876FE /* Uzanti+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A185F29D0736C00A876FE /* Uzanti+Date.swift */; };
 		DE21BE3729B4E8DA006CC365 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21BE3629B4E8DA006CC365 /* ExtensionUIColor.swift */; };
 		DE21BE3929B4EE0F006CC365 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE21BE3829B4EE0F006CC365 /* GoogleService-Info.plist */; };
+		DE68214129D1961900B686C1 /* KameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68214029D1961900B686C1 /* KameraController.swift */; };
+		DE68214329D19E9500B686C1 /* YorumlarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68214229D19E9500B686C1 /* YorumlarController.swift */; };
+		DE68214529D1B16900B686C1 /* YorumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68214429D1B16900B686C1 /* YorumCell.swift */; };
+		DE68214729D1B3EB00B686C1 /* Yorum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68214629D1B3EB00B686C1 /* Yorum.swift */; };
 		DE7326C929C739E100F517A5 /* Kullanici.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7326C829C739E100F517A5 /* Kullanici.swift */; };
 		DE73E4D529C8CCFE004DCEAF /* OturumAcContorller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73E4D429C8CCFE004DCEAF /* OturumAcContorller.swift */; };
 		DE90E8D829B5ED79008604F9 /* AnaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE90E8D729B5ED79008604F9 /* AnaTabBarController.swift */; };
@@ -43,6 +47,10 @@
 		DE0A185F29D0736C00A876FE /* Uzanti+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Uzanti+Date.swift"; sourceTree = "<group>"; };
 		DE21BE3629B4E8DA006CC365 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
 		DE21BE3829B4EE0F006CC365 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE68214029D1961900B686C1 /* KameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KameraController.swift; sourceTree = "<group>"; };
+		DE68214229D19E9500B686C1 /* YorumlarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YorumlarController.swift; sourceTree = "<group>"; };
+		DE68214429D1B16900B686C1 /* YorumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YorumCell.swift; sourceTree = "<group>"; };
+		DE68214629D1B3EB00B686C1 /* Yorum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yorum.swift; sourceTree = "<group>"; };
 		DE7326C829C739E100F517A5 /* Kullanici.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kullanici.swift; sourceTree = "<group>"; };
 		DE73E4D429C8CCFE004DCEAF /* OturumAcContorller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OturumAcContorller.swift; sourceTree = "<group>"; };
 		DE90E8D729B5ED79008604F9 /* AnaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaTabBarController.swift; sourceTree = "<group>"; };
@@ -107,11 +115,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DE68213F29D1960B00B686C1 /* Kamera */ = {
+			isa = PBXGroup;
+			children = (
+				DE68214029D1961900B686C1 /* KameraController.swift */,
+			);
+			path = Kamera;
+			sourceTree = "<group>";
+		};
 		DE7326C729C739D300F517A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				DE7326C829C739E100F517A5 /* Kullanici.swift */,
 				DE9DB6D129CCE03600F3986A /* Paylasim.swift */,
+				DE68214629D1B3EB00B686C1 /* Yorum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,6 +172,7 @@
 		DE9D3D0C29B35BA400792A64 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				DE68213F29D1960B00B686C1 /* Kamera */,
 				DEBAB09129CE36340064C3D1 /* AraView */,
 				DE9DB6D529CCF10200F3986A /* AnaView */,
 				DE9DB6C829CC538400F3986A /* FotografEkle */,
@@ -191,6 +209,8 @@
 			children = (
 				DE9DB6D629CCF12000F3986A /* AnaController.swift */,
 				DE9DB6D829CCF1F100F3986A /* AnaPaylasimCell.swift */,
+				DE68214229D19E9500B686C1 /* YorumlarController.swift */,
+				DE68214429D1B16900B686C1 /* YorumCell.swift */,
 			);
 			path = AnaView;
 			sourceTree = "<group>";
@@ -333,6 +353,7 @@
 				DE0A185E29D06B3200A876FE /* Uzanti+Firestore.swift in Sources */,
 				DEBAB09329CE36580064C3D1 /* KullaniciAraController.swift in Sources */,
 				DE9D3D1029B35BA400792A64 /* SceneDelegate.swift in Sources */,
+				DE68214329D19E9500B686C1 /* YorumlarController.swift in Sources */,
 				DE7326C929C739E100F517A5 /* Kullanici.swift in Sources */,
 				DE0A186029D0736C00A876FE /* Uzanti+Date.swift in Sources */,
 				DE9DB6D029CC86AB00F3986A /* FotografPaylasController.swift in Sources */,
@@ -340,6 +361,9 @@
 				DE9DB6D229CCE03600F3986A /* Paylasim.swift in Sources */,
 				DE9DB6CE29CC67C100F3986A /* FotografSeciciHeader.swift in Sources */,
 				DE21BE3729B4E8DA006CC365 /* ExtensionUIColor.swift in Sources */,
+				DE68214729D1B3EB00B686C1 /* Yorum.swift in Sources */,
+				DE68214129D1961900B686C1 /* KameraController.swift in Sources */,
+				DE68214529D1B16900B686C1 /* YorumCell.swift in Sources */,
 				DE9DB6D929CCF1F100F3986A /* AnaPaylasimCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

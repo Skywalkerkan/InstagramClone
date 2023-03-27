@@ -99,6 +99,8 @@ class FotografPaylasController: UIViewController{
         }
     }
     
+    static let guncelleNotification = Notification.Name("PaylasimlariGuncelle")
+    
     fileprivate func paylasimKaydet(goruntuUrl: String){
         guard let paylasimFotograf = secilenFotograf else{return}
         guard let paylasimMesaj = txtMesaj.text, paylasimMesaj.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 else {return}
@@ -121,6 +123,8 @@ class FotografPaylasController: UIViewController{
             }
             print("Paylaşım başarılya kaydedildi ve paylaşım döküman ID: \(ref?.documentID)")
             self.dismiss(animated: true)
+            //    let guncelleNotification = Notification.Name("PaylasimlariGuncelle")
+                NotificationCenter.default.post(name: FotografPaylasController.guncelleNotification, object: nil)  //Fotoğraf paylas controllerda tetikleyip refresh controllerı ana controllerda çalıştırdık
         })
     }
     

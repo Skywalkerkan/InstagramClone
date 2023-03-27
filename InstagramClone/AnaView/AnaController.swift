@@ -16,6 +16,9 @@ class AnaController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       // let guncelleNotification = Notification.Name(rawValue: "PaylasimlariGuncelle")
+        NotificationCenter.default.addObserver(self, selector: #selector(paylasimYenile), name: FotografPaylasController.guncelleNotification, object: nil)
+        //Fotoğraf paylas controllerda tetikleyip refresh controllerı ana controllerda çalıştırdık
         collectionView.backgroundColor = .white
         collectionView.register(AnaPaylasimCell.self, forCellWithReuseIdentifier: hucreID)
         butonlariOlustur()
@@ -25,6 +28,19 @@ class AnaController: UICollectionViewController{
             self.paylasimlariGetir(kullanici: kullanici)
         }*/
         takipEdilenKIDDegerleriGetir()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(paylasimYenile), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc fileprivate func paylasimYenile(){
+        print("Paylaşım Yenile")
+        paylasimlar.removeAll()
+        collectionView.reloadData()
+        takipEdilenKIDDegerleriGetir()
+        kullaniciyiGetir()
+        
     }
     
     
@@ -54,13 +70,17 @@ class AnaController: UICollectionViewController{
         Firestore.firestore().collection("Paylasimlar").document(kullanici.kullaniciID)
             .collection("Fotograf_Paylasimlari").order(by: "PaylasimTarihi", descending: false)
             .addSnapshotListener { querySnapshot, error in
+                
+                self.collectionView.refreshControl?.endRefreshing()  //animasyonu durduruyor
+                
                 if let error = error{
                     print("Paylaşımlar getirilirken ahta oluştu", error.localizedDescription)
                 }
                 querySnapshot?.documentChanges.forEach({ degisiklik in
                     if degisiklik.type == .added{
                         let paylasimVerisi = degisiklik.document.data()
-                        let paylasim = Paylasim(kullanici: kullanici, sozlukVerisi: paylasimVerisi)
+                        var paylasim = Paylasim(kullanici: kullanici, sozlukVerisi: paylasimVerisi)
+                        paylasim.id = degisiklik.document.documentID // paylaşımın idsi
                         self.paylasimlar.append(paylasim)
                     }
                 })
@@ -74,6 +94,15 @@ class AnaController: UICollectionViewController{
     
     fileprivate func butonlariOlustur(){
         navigationItem.titleView = UIImageView(image: UIImage(imageLiteralResourceName: "Logo_Instagram2")) // navigationitemdaki resimi ayarladık
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "Kamera").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(kameraYonet))
+    }
+    
+    
+    @objc fileprivate func kameraYonet(){
+        print("Kamera açılıyor")
+        let kameraController = KameraController()
+        kameraController.modalPresentationStyle = .fullScreen
+        present(kameraController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,6 +112,7 @@ class AnaController: UICollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: hucreID, for: indexPath) as! AnaPaylasimCell
         cell.paylasim = paylasimlar[indexPath.row]
+        cell.delegate = self
        // cell.backgroundColor = .blue
         return cell
     }
@@ -116,4 +146,16 @@ extension AnaController: UICollectionViewDelegateFlowLayout{
         yukseklik += 70 // mesaj alanı 
         return CGSize(width: view.frame.width, height: yukseklik)
     }
+}
+
+extension AnaController: AnaPaylasimCellDelegate{
+    
+    func yorumaBasildi(paylasim: Paylasim) {
+        print(paylasim.mesaj)
+        let yorumlarController = YorumlarController(collectionViewLayout: UICollectionViewFlowLayout())
+        yorumlarController.secilenPaylasim = paylasim
+        navigationController?.pushViewController(yorumlarController, animated: true)
+    }
+    
+    
 }
