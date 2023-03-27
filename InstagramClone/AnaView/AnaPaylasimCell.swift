@@ -24,7 +24,7 @@ class AnaPaylasimCell: UICollectionViewCell{
 
             guard let pUrl = paylasim?.kullanici.profilGoruntuUrl, let profilGoruntuURl = URL(string: pUrl) else{return}
             imgKullaniciProfilFoto.sd_setImage(with: profilGoruntuURl, completed: nil)
-            //lblPaylasimMesaj.text = paylasim?.mesaj  // böyle yaptığımızda yazılar beyaz fontta oluyor görünmüyor
+            //lblPaylasimMesaj.text = paylasim?.mesaj  // böyle yaptığımızda yazılar beyaz fontta oluyor görünmüyords
             
             attrPaylasimMesajiOlustur()
         }
